@@ -3,7 +3,6 @@
     import Authentication from "../../resources/authentication.js";
     import AutoTranslate from "../../resources/autoTranslate.js";
     import ProjectApi from "../../resources/projectapi.js";
-    import * as FileSaver from "file-saver";
 
     const ProjectClient = new ProjectApi();
 
@@ -48,7 +47,7 @@
                 pageIsLast = true;
                 return;
             }
-            if (messagess.length < 12) {
+            if (messagess.length < 20) {
                 pageIsLast = true;
             }
             messages.push(...messagess);
@@ -67,7 +66,7 @@
                     return;
                 }
                 messages = messagess;
-                if (messages.length < 12) {
+                if (messages.length < 20) {
                     pageIsLast = true;
                 }
             })
@@ -89,20 +88,6 @@
     //     }
     //     ProjectClient.deleteProject(id).then(loggedInChange);
     // }
-    const downloadRejectedProject = async (projectId) => {
-        try {
-            const projectFile = await ProjectClient.getRejectedProjectFile(
-                projectId
-            );
-            FileSaver.saveAs(
-                new Blob([projectFile]),
-                `Project_${projectId}.pmp`
-            );
-        } catch (err) {
-            console.error(err);
-            alert(`Failed to download the project; ${err}`);
-        }
-    };
 
     onMount(async () => {
         const privateCode = localStorage.getItem("PV");
@@ -111,7 +96,7 @@
             return;
         }
         Authentication.usernameFromCode(privateCode)
-            .then(({ username }) => {
+            .then(({username}) => {
                 if (username) {
                     loggedIn = true;
                     loggedInChange(username, privateCode);
@@ -128,7 +113,7 @@
         Authentication.authenticate().then((privateCode) => {
             loggedIn = null;
             Authentication.usernameFromCode(privateCode)
-                .then(({ username }) => {
+                .then(({username}) => {
                     if (username) {
                         loggedIn = true;
                         loggedInChange(username, privateCode);
@@ -186,7 +171,7 @@
     Authentication.onAuthentication((privateCode) => {
         loggedIn = null;
         Authentication.usernameFromCode(privateCode)
-            .then(({ username }) => {
+            .then(({username}) => {
                 if (username) {
                     loggedIn = true;
                     loggedInChange(username, privateCode);
@@ -206,16 +191,9 @@
     }
 </script>
 
-<svelte:head>
+<head>
     <title>PenguinMod - Messages</title>
-    <meta name="title"                   content="PenguinMod - Messages" />
-    <meta property="og:title"            content="PenguinMod - Messages" />
-    <meta property="twitter:title"       content="PenguinMod - Messages">
-    <meta name="description"             content="See your messages or alerts.">
-    <meta property="twitter:description" content="See your messages or alerts.">
-    <meta property="og:url"              content="https://penguinmod.com/messages">
-    <meta property="twitter:url"         content="https://penguinmod.com/messages">
-</svelte:head>
+</head>
 
 <NavigationBar />
 
@@ -286,13 +264,7 @@
                     on:click={() => markAsRead(message.id)}
                 >
                     {#if message.moderator === true}
-                        <h2>
-                            <LocalizedText
-                                text="Moderator Message"
-                                key="messages.moderatortitle"
-                                lang={currentLang}
-                            />
-                        </h2>
+                        <h2>Moderator Message</h2>
                     {/if}
                     <!-- switch case would be ideal, but we dont have that -->
                     {#if message.type === "reject"}
@@ -342,54 +314,6 @@
                             <p>{autoTranslations[message.id]}</p>
                             <br />
                         {/if}
-                        <p class="small">
-                            <b>
-                                {String(
-                                    TranslationHandler.text(
-                                        "messages.projectid",
-                                        currentLang
-                                    )
-                                ).replace("$1", message.projectId)}
-                            </b>
-                        </p>
-                        {#if message.hardReject === false}
-                            <h3>
-                                <a href="/edit?id={message.projectId}" style="display:flex;align-items:center;">
-                                    <img
-                                        src="/pencil.png"
-                                        alt="Edit"
-                                        width="16"
-                                        height="16"
-                                        style="margin-right:6px"
-                                    />
-                                    <LocalizedText
-                                        text="Edit Project"
-                                        key="project.menu.project.edit"
-                                        lang={currentLang}
-                                    />
-                                </a>
-                            </h3>
-                        {:else}
-                            <button
-                                class="fake-link"
-                                style="display:flex;align-items:center;"
-                                on:click={() =>
-                                    downloadRejectedProject(message.projectId)}
-                            >
-                                <img
-                                    src="/messages/download.png"
-                                    alt="Download"
-                                    width="16"
-                                    height="16"
-                                    style="margin-right:6px"
-                                />
-                                <LocalizedText
-                                    text="Download"
-                                    key="messages.download"
-                                    lang={currentLang}
-                                />
-                            </button>
-                        {/if}
                     {:else if message.type === "featured"}
                         <p>
                             <b>
@@ -401,34 +325,10 @@
                                 ).replace("$1", message.name)}
                             </b> 🌟
                         </p>
-                    {:else if message.type === "followerAdded"}
-                        <p>
-                            {String(
-                                TranslationHandler.text(
-                                    "messages.alert.followeradded",
-                                    currentLang
-                                )
-                            ).replace("$1", message.name)}
-                        </p>
-                    {:else if message.type === "newBadge"}
-                        <p>
-                            {String(
-                                TranslationHandler.text(
-                                    "messages.alert.badge",
-                                    currentLang
-                                )
-                            ).replace(
-                                "$1",
-                                TranslationHandler.text(
-                                    `profile.badge.${message.name}`,
-                                    currentLang
-                                )
-                            )}
-                        </p>
                     {:else if message.type === "remix"}
                         <p>
                             <a
-                                href={`https://studio.penguinmod.com/#${message.remixId}`}
+                                href={`https://studio.penguinmod.site/#${message.remixId}`}
                                 target="_blank"
                             >
                                 {String(
@@ -449,23 +349,16 @@
                         </p>
                     {:else if message.type === "restored"}
                         <p>
-                            {String(
-                                TranslationHandler.text(
-                                    "messages.alert.staff.restoredproject.title",
-                                    currentLang
-                                )
-                            ).replace("$1", message.name)}
-                        </p>
-                        <p>
                             <a
-                                href={`https://studio.penguinmod.com/#${message.projectId}`}
+                                href={`https://studio.penguinmod.site/#${message.projectId}`}
                                 target="_blank"
                             >
-                                <LocalizedText
-                                    text="Open in new tab"
-                                    key="uploading.guidelines.newtab"
-                                    lang={currentLang}
-                                />
+                                {String(
+                                    TranslationHandler.text(
+                                        "messages.alert.staff.restoredproject.title",
+                                        currentLang
+                                    )
+                                ).replace("$1", message.name)}
                             </a>
                         </p>
                     {:else if message.type === "ban"}
@@ -533,32 +426,6 @@
                                 <br />
                             {/if}
                         </p>
-                    {:else if message.type === "guidelines"}
-                        <a
-                            href="/{message.section === 'uploadingguidelines' ? 'guidelines/uploading' : message.section}"
-                        >
-                            {String(
-                                    TranslationHandler.text(
-                                        `messages.alert.${message.section}`,
-                                        currentLang
-                                    ) || TranslationHandler.text(
-                                        `messages.alert.${message.section}`,
-                                        'en'
-                                    )
-                            )
-                            .replace("{{TERMS_OF_SERVICE}}", TranslationHandler.text(
-                                        "home.footer.sections.info.terms",
-                                        currentLang
-                                    ))
-                            .replace("{{PRIVACY_POLICY}}", TranslationHandler.text(
-                                        "home.footer.sections.info.privacy",
-                                        currentLang
-                                    ))
-                            .replace("{{UPLOADING_GUIDELINES}}", TranslationHandler.text(
-                                        "home.footer.sections.info.guidelines",
-                                        currentLang
-                                    ))}
-                        </a>
                     {:else}
                         <!-- what is this? -->
                         <p>
@@ -655,18 +522,13 @@
         min-width: 1000px;
     }
 
-    .small {
-        font-size: smaller;
-        opacity: 0.6;
-    }
-
     .section-info {
         background: #00c3ffad;
         height: 8rem;
         color: white;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         width: 100%;
         margin: 0;
@@ -748,9 +610,6 @@
     }
     :global(body.dark-mode) .message[data-moderator="true"] {
         border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-    :global(html[dir="rtl"]) .message {
-        text-align: right;
     }
 
     textarea {

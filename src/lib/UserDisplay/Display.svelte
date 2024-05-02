@@ -36,16 +36,12 @@
         float: left;
         margin-left: 8px;
     }
-    :global(html[dir="rtl"]) .display-meta {
-        margin-left: initial;
-        margin-right: 8px;
-    }
 
     .text {
         text-overflow: ellipsis;
         text-decoration: none;
         width: 100%;
-        color: #434070;
+        color: #4d97ff;
         display: block;
         white-space: nowrap;
         overflow: hidden;

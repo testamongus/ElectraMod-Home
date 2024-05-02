@@ -25,7 +25,7 @@
     let page = 0;
     let pageIsLast = false;
 
-    const validTagPrefixes = ["studio", "user", "featured", "sort"];
+    const validTagPrefixes = ["studio", "user", "featured"];
     const tagFilterFunction = (word) => {
         const startsWithTag = validTagPrefixes.some((value) => {
             return String(word).startsWith(`${value}:`);
@@ -54,9 +54,6 @@
             for (const tag of tags) {
                 if (tag.startsWith("user")) {
                     queryExtra += `&user=${tag.replace("user:", "")}`;
-                }
-                if (tag.startsWith("sort")) {
-                    queryExtra += `&sortby=${tag.replace("sort:", "")}`;
                 }
                 if (tag.startsWith("featured")) {
                     const value = tag.replace("featured:", "");
@@ -114,16 +111,9 @@
     });
 </script>
 
-<svelte:head>
+<head>
     <title>PenguinMod - Search</title>
-    <meta name="title"                   content="PenguinMod - Search{searchQuery ? ` for ${searchQuery}` : ''}" />
-    <meta property="og:title"            content="PenguinMod - Search{searchQuery ? ` for ${searchQuery}` : ''}" />
-    <meta property="twitter:title"       content="PenguinMod - Search{searchQuery ? ` for ${searchQuery}` : ''}">
-    <meta name="description"             content={searchQuery ? `View things under "${searchQuery}" on PenguinMod.` : 'View some stuff uploaded to PenguinMod under a certain query.'}>
-    <meta property="twitter:description" content={searchQuery ? `View things under "${searchQuery}" on PenguinMod.` : 'View some stuff uploaded to PenguinMod under a certain query.'}>
-    <meta property="og:url"              content="https://penguinmod.com/search">
-    <meta property="twitter:url"         content="https://penguinmod.com/search">
-</svelte:head>
+</head>
 
 <NavigationBar />
 

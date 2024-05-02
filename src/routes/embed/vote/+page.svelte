@@ -23,7 +23,6 @@
 
     let loaded = false;
     let loggedIn = null;
-    let loggedInAdmin = false;
 
     let projectId = 0;
 
@@ -31,10 +30,9 @@
         if (loggedIn === false) {
             Authentication.authenticate().then((privateCode) => {
                 Authentication.usernameFromCode(privateCode)
-                    .then(({username, isAdmin, isApprover}) => {
+                    .then(({username}) => {
                         if (username) {
                             loggedIn = true;
-                            loggedInAdmin = isAdmin || isApprover;
                             vote();
                             return;
                         }
@@ -56,10 +54,9 @@
         if (loggedIn === false) {
             Authentication.authenticate().then((privateCode) => {
                 Authentication.usernameFromCode(privateCode)
-                    .then(({username, isAdmin, isApprover}) => {
+                    .then(({username}) => {
                         if (username) {
                             loggedIn = true;
-                            loggedInAdmin = isAdmin || isApprover;
                             love();
                             return;
                         }
@@ -103,13 +100,12 @@
             return;
         }
         Authentication.usernameFromCode(privateCode)
-            .then(({username, isAdmin, isApprover}) => {
+            .then(({username}) => {
                 if (username) {
                     ProjectClient.setPrivateCode(privateCode);
                     ProjectClient.setUsername(username);
                     updateVoteStates();
                     loggedIn = true;
-                    loggedInAdmin = isAdmin || isApprover;
                     return;
                 }
                 loggedIn = false;
@@ -132,11 +128,10 @@
     });
     Authentication.onAuthentication((privateCode) => {
         ProjectClient.setPrivateCode(privateCode);
-        Authentication.usernameFromCode(privateCode).then(({username, isAdmin, isApprover}) => {
+        Authentication.usernameFromCode(privateCode).then(({username}) => {
             if (username) {
                 ProjectClient.setUsername(username);
                 loggedIn = true;
-                loggedInAdmin = isAdmin || isApprover;
             }
         });
     });
@@ -181,31 +176,6 @@
             </button>
             <p>{views}</p>
         </div>
-        {#if loggedInAdmin}
-            <div>
-                <p>
-                    <a href="/panel?reject={projectId}" target="_blank">
-                        <img
-                            src="/notallowed.png"
-                            alt="Reject Project"
-                            title="Reject Project"
-                            height="32"
-                        >
-                    </a>
-                </p>
-                <br>
-                <p>
-                    <a href="/edit?id={projectId}" target="_blank">
-                        <img
-                            src="/pencil.png"
-                            alt="Edit Project"
-                            title="Edit Project"
-                            height="32"
-                        >
-                    </a>
-                </p>
-            </div>
-        {/if}
     {:else}
         <LoadingSpinner />
     {/if}
