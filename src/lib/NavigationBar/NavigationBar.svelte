@@ -39,9 +39,9 @@
 	const isAprilFirst = isAprilFools();
 	const randomColor = (() => {
 		const colors = [
-			"#00c3ff",
+			"#625E97",
 			"#ff4c4c",
-			"#66757f",
+			"#4E3C56",
 			"#ffd000",
 			"#b200fe"
 		];
@@ -269,7 +269,7 @@
 </div>
 <div class="bar" style={isAprilFirst ? `background-color: ${randomColor} !important` : ''}>
 	<a class="logo" href="/">
-		<img class="logo-image" src="/navicon.png" alt="PenguinMod" />
+		<img class="logo-image" src="/navicon.png" alt="ElectramOD" />
 	</a>
 	<div style="margin-right: 12px;" />
 	<div class="logo-launcher-margin" />
@@ -382,10 +382,10 @@
 
 <style>
 	:root {
-		--penguinmod-color: #00c3ff;
+		--penguinmod-color: #625E97;
 	}
 	:global(body.dark-mode) {
-		--penguinmod-color: #009ccc;
+		--penguinmod-color: #2A293F;
 	}
 
 	.bar {
@@ -513,7 +513,7 @@
 	}
 
 	.languageOption:hover {
-		background: dodgerblue !important;
+		background: #434070 !important;
 		color: white;
 	}
 
