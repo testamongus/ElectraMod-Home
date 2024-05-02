@@ -1,2 +1,3 @@
 # PenguinMod-Home
-A main home page with community projects and other content.
+
+This Project is paused. Aness if you want to complete this thats fine

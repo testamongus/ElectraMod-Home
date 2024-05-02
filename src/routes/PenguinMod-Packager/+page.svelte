@@ -2,16 +2,23 @@
     import { onMount } from "svelte";
     onMount(() => {
         window.location.href =
-            "https://studio.penguinmod.site/PenguinMod-Packager";
+            "https://electramod-packager.vercel.app";
     });
 </script>
 
-<head>
+<svelte:head>
     <title>Redirecting</title>
-</head>
+    <meta name="title" content="ElectraMod - Home" />
+    <meta property="og:title" content="ElectraMod - Home" />
+    <meta property="twitter:title" content="ElectraMod - Home">
+    <meta name="description" content="The area where featured projects and community stuff & info is shown.">
+    <meta property="twitter:description" content="The area where featured projects and community stuff & info is shown.">
+    <meta property="og:url" content="https://electramod-home.vercel.app/">
+    <meta property="twitter:url" content="https://electramod-home.vercel.app/">
+</svelte:head>
 <div>
     If you are not redirected automatically,
-    <a href="https://studio.penguinmod.site/PenguinMod-Packager">click here</a>
+    <a href="https://electramod-packager.vercel.app">click here</a>
 </div>
 
 <style>
@@ -25,7 +32,7 @@
     }
 
     div {
-        background: #009ccc;
+        background: #2A293F;
         display: flex;
         align-items: center;
         height: 100%;

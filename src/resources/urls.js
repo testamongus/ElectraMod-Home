@@ -1,32 +1,39 @@
+import ProjectApi from "./projectapi"
+
 export default {
     /**
-     * PenguinMod's normal page
+     * ElectraMod's normal page
      */
-    base: "https://studio.penguinmod.site/",
+    base: "https://electramod.vercel.app/",
 
     /**
-     * PenguinMod's editor page
+     * ElectraMod's editor page
      */
-    editor: "https://studio.penguinmod.site/editor.html",
+    editor: "https://electramod.vercel.app/editor.html",
 
     /**
-     * PenguinMod's credits page
+     * ElectraMod's credits page
      */
-    credits: "https://studio.penguinmod.site/credits.html",
+    credits: "https://electramod.vercel.app/credits.html",
 
     /**
-     * PenguinMod's privacy policy page
+     * ElectraMod's terms of service page
      */
-    privacy: "https://studio.penguinmod.site/privacy.html",
+    terms: "/terms",
 
     /**
-     * PenguinMod's guideline pages for services
+     * ElectraMod's privacy policy page
+     */
+    privacy: "/privacy",
+
+    /**
+     * ElectraMod's guideline pages for services
      */
     guidelines: {
         /**
-         * PenguinMod's project uploading guidelines
+         * ElectraMod's project uploading guidelines
          */
-        projects: "https://studio.penguinmod.site/PenguinMod-Guidelines/PROJECTS"
+        projects: "https://electramod.vercel.app/PenguinMod-Guidelines/PROJECTS"
     },
 
     /**
@@ -34,38 +41,39 @@ export default {
      */
     donate: {
         scratch: "https://www.scratchfoundation.org/donate",
-        turbowarp: "https://github.com/sponsors/GarboMuffin"
+        turbowarp: "https://github.com/sponsors/GarboMuffin",
+        penguinmod: "https://penguinmod.com/donate"
     },
 
     /**
-     * PenguinMod's project page
+     * ElectraMod's project page
      */
-    projects: "https://projects.penguinmod.site/",
+    projects: `${ProjectApi.OriginApiUrl}/`,
 
     /**
-     * PenguinMod's my stuff page
+     * ElectraMod's my stuff page
      */
-    mystuff: "https://projects.penguinmod.site/mystuff",
+    mystuff: `${ProjectApi.OriginApiUrl}/mystuff`,
 
     /**
-     * PenguinMod's home page
+     * ElectraMod's home page
      */
-    home: "https://home.penguinmod.site/",
+    home: "https://electramod-home.vercel.app/",
 
     /**
-     * PenguinMod's packager page
+     * ElectraMod's packager page
      */
-    packager: "https://studio.penguinmod.site/PenguinMod-Packager/",
+    packager: "https://electramod-packager.vercel.app",
 
     /**
-     * PenguinMod's unofficial wiki
+     * ElectraMod's unofficial wiki
      */
     wiki: "https://penguinmod.fandom.com/wiki/Penguinmod",
 
     /**
-     * PenguinMod's Discord invite
+     * ElectraMod's Discord invite
      */
-    discord: "https://discord.gg/NZ9MBMYTZh",
+    discord: "https://discord.gg/9TSAK7jEED",
 
     /**
      * Scratch's website
@@ -78,22 +86,17 @@ export default {
     turbowarp: "https://turbowarp.org",
 
     /**
-     * PenguinMod's github page
+     * ElectraMod's github page
      */
-    github: "https://github.com/PenguinMod/",
+    github: "https://github.com/ElectraMod/",
 
     /**
-     * PenguinMod's basic API
+     * ElectraMod's basic API
      */
-    basicApi: "https://pmbasicapi--jeremygamer1.repl.co/",
+    basicApi: "https://basic-api.penguinmod.com/",
 
     /**
-     * PenguinMod's update reader API
+     * The admin panel for em projects api
      */
-    updateReaderApi: "https://pmupdatereader.jeremygamer13.repl.co/",
-
-    /**
-     * The admin panel for pm projects api
-     */
-    adminPanel: "https://penguinmod.site/panel"
+    adminPanel: "https://penguinmod.com/panel"
 }

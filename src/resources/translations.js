@@ -1,21 +1,11 @@
-// if you want to add a language, this is the spot
-// after "import" put a name that has no symbols and doesnt start with a number
-// then the file path should be self explanatory, just follow the ones already there
-// you can find the actual language translations in the src/translations folder
+// TRANSLATION DEFINITIONS HAVE MOVED TO src/translations/!locales.js
+// TRANSLATION DEFINITIONS HAVE MOVED TO src/translations/!locales.js
+// TRANSLATION DEFINITIONS HAVE MOVED TO src/translations/!locales.js
+// TRANSLATION DEFINITIONS HAVE MOVED TO src/translations/!locales.js
+import Locales from "../translations/!locales";
 
-import en from '../translations/en.json';
-import id from '../translations/id.json';
-import test from '../translations/test.json';
-
-// to add a language, the first part is the language code (ex: "es-419") or top level (ex: "en-US" goes to "en")
-// the second part is the import name above that had no symbols
-// its easy to just duplicate the "en": en, line and then change accordingly
-const languages = {
-    "en": en,
-    "id": id,
-
-    // "test": test,
-};
+const languages = Locales.languages;
+const rtlLanguages = Locales.rtlLanguages;
 
 class TranslationHandler {
     static text(key, lang) {
@@ -41,9 +31,18 @@ class TranslationHandler {
     static isLanguageAvailable(lang) {
         return (lang in languages);
     }
+    static tryConvertingLocale(languageCode) {
+        if (languageCode in Locales.autoLocale) {
+            return Locales.autoLocale[languageCode];
+        }
+        return languageCode;
+    }
 
     static get languages() {
         return languages;
+    }
+    static get rtlLanguages() {
+        return rtlLanguages;
     }
 }
 

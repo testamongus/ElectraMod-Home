@@ -9,11 +9,11 @@
 
     function begin() {
         window.open(
-            "https://studio.penguinmod.site?restore=true&handler=" +
+            "https://studio.penguinmod.com?restore=true&handler=" +
                 window.location.origin
         );
         window.onmessage = (e) => {
-            if (!e.origin.startsWith(`https://studio.penguinmod.site`)) {
+            if (!e.origin.startsWith(`https://studio.penguinmod.com`)) {
                 return;
             }
 
@@ -56,9 +56,16 @@
     }
 </script>
 
-<head>
+<svelte:head>
     <title>PenguinMod - Restore</title>
-</head>
+    <meta name="title" content="PenguinMod - Home" />
+    <meta property="og:title" content="PenguinMod - Home" />
+    <meta property="twitter:title" content="PenguinMod - Home">
+    <meta name="description" content="The area where featured projects and community stuff & info is shown.">
+    <meta property="twitter:description" content="The area where featured projects and community stuff & info is shown.">
+    <meta property="og:url" content="https://penguinmod.com/restore">
+    <meta property="twitter:url" content="https://penguinmod.com/restore">
+</svelte:head>
 
 <NavigationBar />
 

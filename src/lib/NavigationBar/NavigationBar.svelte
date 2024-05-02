@@ -1,5 +1,16 @@
 <script>
 	import { onMount } from "svelte";
+    import { page } from "$app/stores";
+
+	const isAprilFools = () => {
+        const date = new Date(Date.now());
+        const urlParams = $page.url.searchParams;
+        const isAprilFools = date.getMonth() === 3 && date.getDate() === 1; // month is 0 indexed for literally no reason
+        const runningLocal = String(urlParams.get('forceaprilfools')) === 'true' && $page.url.hostname === 'localhost';
+
+        return isAprilFools || runningLocal;
+    };
+
 	import Authentication from "../../resources/authentication.js";
 	import ProjectApi from "../../resources/projectapi.js";
 	import HTMLUtility from "../../resources/html.js";
@@ -23,33 +34,58 @@
 	let isApprover = false;
 	let accountUsername = "";
 	let messageCount = 0;
+	let canRankUp = false;
+
+	const isAprilFirst = isAprilFools();
+	const randomColor = (() => {
+		const colors = [
+			"#625E97",
+			"#ff4c4c",
+			"#4E3C56",
+			"#ffd000",
+			"#b200fe"
+		];
+		return colors[Math.round(Math.random() * (colors.length - 1))];
+	})();
 
 	function loggedInCheck() {
 		const privateCode = localStorage.getItem("PV");
 		if (!privateCode) {
 			loggedIn = false;
+			canRankUp = false;
 			messageCount = 0;
 			return;
 		}
 		Authentication.usernameFromCode(privateCode)
-			.then(({username, isAdmin: isAdminn, isApprover: isApproverr}) => {
-				if (username) {
-					loggedIn = true;
-					accountUsername = username;
-					isAdmin = isAdminn;
-					isApprover = isApproverr;
-					if (username) ProjectClient.setUsername(username);
-					if (privateCode) ProjectClient.setPrivateCode(privateCode);
-					ProjectClient.getMessageCount().then((amount) => {
-						messageCount = amount;
-					});
-					return;
+			.then(
+				({ username, isAdmin: isAdminn, isApprover: isApproverr }) => {
+					if (username) {
+						loggedIn = true;
+						accountUsername = username;
+						isAdmin = isAdminn;
+						isApprover = isApproverr;
+						if (username) ProjectClient.setUsername(username);
+						if (privateCode)
+							ProjectClient.setPrivateCode(privateCode);
+						ProjectClient.setAdmin(isAdminn);
+						ProjectClient.getMessageCount().then((amount) => {
+							messageCount = amount;
+						});
+						if (username) {
+							ProjectApi.getProfile(username).then((profile) => {
+								canRankUp = profile.canrankup === true;
+							});
+						}
+						return;
+					}
+					loggedIn = false;
+					canRankUp = false;
+					messageCount = 0;
 				}
-				loggedIn = false;
-				messageCount = 0;
-			})
+			)
 			.catch(() => {
 				loggedIn = false;
+				canRankUp = false;
 				messageCount = 0;
 			});
 	}
@@ -62,7 +98,7 @@
 	function logout() {
 		accountMenu.style.display = "none";
 		const pv = localStorage.getItem("PV");
-		Authentication.usernameFromCode(pv).then(({username}) => {
+		Authentication.usernameFromCode(pv).then(({ username }) => {
 			fetch(
 				`${LINK.projects}api/users/logout?user=${username}&code=${pv}`
 			).then((res) => {
@@ -70,6 +106,7 @@
 				localStorage.removeItem("PV");
 				Authentication.fireLogout();
 				loggedIn = false;
+				canRankUp = false;
 				messageCount = 0;
 			});
 		});
@@ -79,8 +116,16 @@
 	}
 
 	function switchTheme() {
-		if (localStorage.getItem("darkmode")) {
-			localStorage.removeItem("darkmode");
+		let prefersDarkMode = false;
+		try {
+			prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+		} catch {
+			prefersDarkMode = false;
+		}
+		const darkThemeOption = localStorage.getItem("darkmode");
+		const hasDarkOption = darkThemeOption !== null && darkThemeOption !== undefined;
+		if (String(darkThemeOption) === "true" || (!hasDarkOption && prefersDarkMode)) { 
+			localStorage.setItem("darkmode", false);
 		} else {
 			localStorage.setItem("darkmode", true);
 		}
@@ -104,7 +149,8 @@
 
 	// language picker
 	const availableLanguages = Translations.languages;
-	const languageKeys = Object.keys(availableLanguages);
+	const languageKeys = Object.keys(availableLanguages)
+		.sort((a, b) => a.localeCompare(b));
 	function openLanguageMenu(event) {
 		event = event.detail;
 		languageMenu.style.display = "";
@@ -115,15 +161,26 @@
 			languageMenu.style.left = `calc(5rem + 4px)`;
 			languageMenu.style.bottom = "4px";
 		}
+		if (Translations.rtlLanguages.includes(currentLang)) {
+			languageMenu.style.left = `initial`;
+			languageMenu.style.right = `4px`;
+		}
 	}
+	let accountMenuIsOpen = false;
 	function openAccountMenu(event) {
 		const buttonRect = accountButton.getBoundingClientRect();
 		event = event.detail;
+		if (accountMenuIsOpen) {
+			accountMenu.style.display = "none";
+			accountMenuIsOpen = false;
+			return;
+		}
 		accountMenu.style.display = "";
 		accountMenu.style.right = `${
 			window.innerWidth - buttonRect.right - 8
 		}px`;
 		accountMenu.style.top = `3rem`;
+		accountMenuIsOpen = true;
 	}
 	function langName(lang) {
 		return Translations.text("lang.name", lang);
@@ -146,8 +203,8 @@
 					languageMenu.style.display = "none";
 				}
 			}
-			if (accountMenu) {
-				if (!HTMLUtility.isDescendantOf(accountMenu, e.target)) {
+			if (accountMenu && accountButton) {
+				if (!HTMLUtility.isDescendantOf(accountMenu, e.target) && !HTMLUtility.isDescendantOf(accountButton, e.target)) {
 					accountMenu.style.display = "none";
 				}
 			}
@@ -188,6 +245,9 @@
 				key="navigation.profile"
 				lang={currentLang}
 			/>
+			{#if canRankUp}
+				<div class="rankup-badge">!</div>
+			{/if}
 		</button>
 	</a>
 	<a href="/mystuff">
@@ -207,9 +267,9 @@
 		/>
 	</button>
 </div>
-<div class="bar">
+<div class="bar" style={isAprilFirst ? `background-color: ${randomColor} !important` : ''}>
 	<a class="logo" href="/">
-		<img class="logo-image" src="/navicon.png" alt="PenguinMod" />
+		<img class="logo-image" src="/navicon.png" alt="ElectramOD" />
 	</a>
 	<div style="margin-right: 12px;" />
 	<div class="logo-launcher-margin" />
@@ -251,6 +311,11 @@
 			<img src="/discord_white.png" alt="Discord" />
 		</div>
 	</BarButton>
+	<!-- <BarPage
+		link={LINK.discord}
+		label="<img src='/discord_white.png' width='25' alt='Discord'>"
+		style="padding:0.5rem"
+	/> -->
 	{#if loggedIn === true}
 		<BarPage
 			link="/messages"
@@ -273,15 +338,9 @@
 			style="padding:0.5rem"
 		/>
 	{/if}
-	{#if isAdmin && loggedIn}
+	{#if (isAdmin || isApprover) && loggedIn}
 		<BarPage
 			link="/panel"
-			label="<img src='/messages/panel.svg' width='25' alt='Panel'>"
-			style="padding:0.5rem"
-		/>
-	{:else if isApprover && loggedIn}
-		<BarPage
-			link="/userpanel"
 			label="<img src='/messages/panel.svg' width='25' alt='Panel'>"
 			style="padding:0.5rem"
 		/>
@@ -307,11 +366,11 @@
 				class="profile-picture"
 			/>
 			<p>{accountUsername}</p>
-			<img src="/dropdown-caret.png" style="margin-left: 4px" alt="v" />
+			<img src="/dropdown-caret.png" style="margin: 0 4px" alt="v" />
 		</button>
 	{/if}
 	<BarPage
-		label="<img src='/globe.svg' alt='LanguageSwitcher'><img src='/dropdown-caret.png' style='margin-left: 4px' alt='v'>"
+		label="<img src='/globe.svg' alt='LanguageSwitcher'><img src='/dropdown-caret.png' style='margin: 0 4px' alt='v'>"
 		style={"padding: 0.5rem; position: absolute; left: 4px;" +
 			(Object.keys(availableLanguages).length <= 1
 				? "display: none;"
@@ -323,10 +382,10 @@
 
 <style>
 	:root {
-		--penguinmod-color: #00c3ff;
+		--penguinmod-color: #625E97;
 	}
 	:global(body.dark-mode) {
-		--penguinmod-color: #009ccc;
+		--penguinmod-color: #2A293F;
 	}
 
 	.bar {
@@ -413,7 +472,7 @@
 
 	.languageSelect {
 		position: fixed;
-		width: 192px;
+		width: 256px;
 		max-height: 300px;
 		overflow: auto;
 		background: white;
@@ -430,6 +489,9 @@
 		font-size: 1rem;
 		text-align: left;
 		cursor: pointer;
+	}
+	:global(html[dir="rtl"]) .languageOption {
+		text-align: right;
 	}
 	.languageCount {
 		/* width: 100%; */
@@ -451,7 +513,7 @@
 	}
 
 	.languageOption:hover {
-		background: dodgerblue !important;
+		background: #434070 !important;
 		color: white;
 	}
 
@@ -466,12 +528,26 @@
 		top: 0px;
 		right: 0px;
 	}
+	.rankup-badge {
+		display: inline-block;
+		text-align: center;
+		background: red;
+		color: white;
+		font-weight: bold;
+		border-radius: 1000px;
+		width: 16px;
+		height: 16px;
+	}
 
 	.profile-picture {
 		border-radius: 4px;
 		width: 30px;
 		height: 30px;
 		margin-right: 8px;
+	}
+	:global(html[dir="rtl"]) .profile-picture {
+		margin-right: initial;
+		margin-left: 8px;
 	}
 	.profile-dropdown {
 		background: transparent;
@@ -525,6 +601,9 @@
 		text-decoration: none;
 		cursor: pointer;
 		user-select: none;
+	}
+	:global(html[dir="rtl"]) .profile-dropdown-menu button {
+		text-align: right;
 	}
 	.profile-dropdown-menu button:hover {
 		background: rgba(0, 0, 0, 0.15);

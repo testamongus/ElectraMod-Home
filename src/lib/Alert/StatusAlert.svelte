@@ -10,7 +10,7 @@
     };
 
     onMount(() => {
-        fetch(`${LINK.updateReaderApi}status`).then((res) => {
+        fetch(`${LINK.basicApi}status`).then((res) => {
             if (!res.ok) return;
             res.json().then((status) => {
                 // currently multiple updates are not supported
@@ -32,7 +32,7 @@
         textColor="black"
         hasButton={true}
         buttonText="Details"
-        buttonHref={"https://status.penguinmod.site/"}
+        buttonHref={"https://status.penguinmod.com/"}
         buttonTooLight={true}
     />
 {/if}

@@ -3,6 +3,7 @@
 
     export let highlighted = false;
     export let link = false;
+    export let toggled = false;
     export let label = "";
     export let noredirect = false;
 
@@ -39,7 +40,8 @@
 {#if !link}
     <button
         class={(highlighted ? "button button-highlight" : "button") +
-            (color ? ` ${color}` : "")}
+            (color ? ` ${color}` : "") +
+            (toggled ? " button-toggled" : "")}
         on:click={event}
     >
         {#if icon}
@@ -60,9 +62,9 @@
         border-radius: 4px;
         outline-width: 2px;
         outline-style: solid;
-        outline-color: rgba(0, 195, 255, 0.35);
+        outline-color: rgb(62, 59, 99, 0.35);
         color: white;
-        background-color: #00c3ff;
+        background-color: #625E97;
         cursor: pointer;
         display: flex;
         flex-direction: row;
@@ -74,7 +76,19 @@
     .button-highlight {
         outline: 0px;
         background-color: white;
-        color: #00c3ff;
+        color: #625E97;
+    }
+    .button-toggled {
+        background-color: transparent !important;
+        outline-color: rgba(0, 0, 0, 0.1) !important;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        color: black;
+        font-weight: normal;
+    }
+    :global(body.dark-mode) .button-toggled {
+        outline-color: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        color: white;
     }
 
     .remix {
@@ -92,5 +106,9 @@
     .red {
         background-color: #ff5151;
         outline-color: rgba(255, 81, 81, 0.35);
+    }
+    .purple {
+        background-color: #ab51ff;
+        outline-color: rgba(185, 81, 255, 0.35);
     }
 </style>
