@@ -33,8 +33,8 @@
         if (
             !(
                 urlObject.host.startsWith("dev.penguinmod.com") ||
-                urlObject.host.startsWith("studio.penguinmod.com") ||
-                urlObject.host.startsWith("penguinmod.com") ||
+                urlObject.host.startsWith("electramod.vercel.app") ||
+                urlObject.host.startsWith("electramod-home.vercel.app") ||
                 urlObject.host.startsWith("localhost:3000")
             )
         ) {

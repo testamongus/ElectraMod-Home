@@ -114,14 +114,14 @@
 </script>
 
 <svelte:head>
-    <title>PenguinMod - {headerText}</title>
-    <meta name="title"                   content="PenguinMod - {headerText}" />
-    <meta property="og:title"            content="PenguinMod - {headerText}" />
-    <meta property="twitter:title"       content="PenguinMod - {headerText}">
-    <meta name="description"             content="View this event on PenguinMod's website!">
-    <meta property="twitter:description" content="View this event on PenguinMod's website!">
-    <meta property="og:url"              content="https://penguinmod.com/events/{eventPath}">
-    <meta property="twitter:url"         content="https://penguinmod.com/events/{eventPath}">
+    <title>ElectraMod - {headerText}</title>
+    <meta name="title"                   content="ElectraMod - {headerText}" />
+    <meta property="og:title"            content="ElectraMod - {headerText}" />
+    <meta property="twitter:title"       content="ElectraMod - {headerText}">
+    <meta name="description"             content="View this event on ElectraMod's website!">
+    <meta property="twitter:description" content="View this event on ElectraMod's website!">
+    <meta property="og:url"              content="https://electramod-home.vercel.app/events/{eventPath}">
+    <meta property="twitter:url"         content="https://electramod-home.vercel.app/events/{eventPath}">
 </svelte:head>
 
 <div class="container">
@@ -175,7 +175,7 @@
         width: 70%;
     }
     :global(body.dark-mode) :global(a) {
-        color: dodgerblue;
+        color: #434070;
     }
     
     .event-banner {
