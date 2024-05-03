@@ -86,6 +86,10 @@ export default {
     turbowarp: "https://turbowarp.org",
 
     /**
+     * PenguinMod's website
+     */
+    github: "https://penguinmod.com",
+    /**
      * ElectraMod's github page
      */
     github: "https://github.com/ElectraMod/",
