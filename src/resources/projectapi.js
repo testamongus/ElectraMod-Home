@@ -1,4 +1,4 @@
-let OriginApiUrl = "https://electraprojects.mubi.tech";
+let OriginApiUrl = "https://projects.mubi.tech";
 // OriginApiUrl = "http://localhost:8080";
 
 class ProjectApi {
