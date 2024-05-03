@@ -1,4 +1,4 @@
-let OriginApiUrl = "https://projects.penguinmod.com";
+let OriginApiUrl = "https://electraprojects.mubi.tech";
 // OriginApiUrl = "http://localhost:8080";
 
 class ProjectApi {
