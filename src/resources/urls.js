@@ -97,7 +97,7 @@ export default {
     /**
      * ElectraMod's basic API
      */
-    basicApi: "https://basic-api.penguinmod.com/",
+    basicApi: "https://electra-basic-api.mubi.tech/",
 
     /**
      * The admin panel for em projects api
