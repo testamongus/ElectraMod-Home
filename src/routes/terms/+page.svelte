@@ -21,7 +21,7 @@
     </script>
     
     <svelte:head>
-        <title>PenguinMod - Terms of Service</title>
+        <title>ElectraMod - TOS</title>
         <meta name="title" content="PenguinMod - Terms of Service" />
         <meta property="og:title" content="PenguinMod - Terms of Service" />
         <meta property="twitter:title" content="PenguinMod - Terms of Service">
@@ -42,7 +42,7 @@
     
         <main>
             <!-- UPDATE THIS WHEN MAKING CONTENT CHANGES -->
-            <p><i>Updated March 19th, 2024 (Mountain Time)</i></p>
+            <p><i>Updated At May the 4th be with you (Mountain Time)</i></p>
 
             <!-- some things are intentionally not formatted as they are in the HTML file on the website -->
             <p>
@@ -73,11 +73,11 @@
 
             <h2>General</h2>
             <p>
-                By using PenguinMod, you agree to the terms outlined below. If you do not agree with these terms, please refrain from
+                By using ElectraMod, you agree to the terms outlined below. If you do not agree with these terms, please refrain from
                 using our website.
             </p>
 
-            <h2>Your use of PenguinMod</h2>
+            <h2>Your use of ElectraMod</h2>
             <p>
                 When uploading projects or posting content on PenguinMod, your content must abide by the
                 <a href="https://penguinmod.com/guidelines/uploading">Uploading Guidelines</a>
