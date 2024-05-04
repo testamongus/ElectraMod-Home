@@ -21,17 +21,17 @@
 </script>
 
 <svelte:head>
-  <title>PenguinMod - Thanks for donating!</title>
+  <title>ElectaMod - Thanks for donating!</title>
   <meta name="title" content="PenguinMod - Thanks for donating!" />
   <meta property="og:title" content="PenguinMod - Thanks for donating!" />
   <meta property="twitter:title" content="PenguinMod - Thanks for donating!" />
   <meta
     name="description"
-    content="Help support PenguinMod and it's development!"
+    content="Help support ElectraMod and it's development!"
   />
   <meta
     property="twitter:description"
-    content="Help support PenguinMod and it's development!"
+    content="Help support ElectraMod and it's development!"
   />
   <meta property="og:url" content="https://penguinmod.com/donate" />
   <meta property="twitter:url" content="https://penguinmod.com/donate" />
