@@ -299,12 +299,12 @@
 </script>
 
 <svelte:head>
-    <title>PenguinMod - Home</title>
-    <meta name="title" content="PenguinMod - Home" />
-    <meta property="og:title" content="PenguinMod - Home" />
-    <meta property="twitter:title" content="PenguinMod - Home">
-    <meta name="description" content="The area where featured projects and community stuff & info is shown.">
-    <meta property="twitter:description" content="The area where featured projects and community stuff & info is shown.">
+    <title>ElectraMod - Home</title>
+    <meta name="title" content="ElectraMod - Home" />
+    <meta property="og:title" content="ElectraMod - Home" />
+    <meta property="twitter:title" content="ElectraMod - Home">
+    <meta name="description" content="Where stuff of ElectraMod is shown.">
+    <meta property="twitter:description" content="Where stuff of ElectraMod is shown.">
     <meta property="og:url" content="https://penguinmod.com/">
     <meta property="twitter:url" content="https://penguinmod.com/">
 </svelte:head>
@@ -345,14 +345,14 @@
             <div style="margin-left: 8rem;">
                 <h1>
                     <LocalizedText
-                        text="Block-based coding with tons of capabilities"
+                        text="Build Awesome Projects with tons of capabilites!"
                         key="home.introduction1"
                         lang={currentLang}
                     />
                 </h1>
                 <h1>
                     <LocalizedText
-                        text="Built off of TurboWarp and Scratch"
+                        text="Built off of PenguinMod, Turbowarp and Scratch"
                         key="home.introduction2"
                         lang={currentLang}
                     />
@@ -364,12 +364,12 @@
                 >
                     {#if !thingyActive}
                         <LocalizedText
-                            text="Try it out"
+                            text="Try it!"
                             key="home.tryout"
                             lang={currentLang}
                         />
                     {:else}
-                        EEEAAAOOO
+                        SKIBIDI TOILET
                     {/if}
                 </Button>
             </div>
@@ -408,7 +408,7 @@
                 />
                 <p>
                     <LocalizedText
-                        text="PenguinMod is made by English-speaking developers. Expect minor issues and sorry for any translation errors."
+                        text="ElectraMod is made by French and English speakers. There WILL be mistakes in the translation."
                         key="translation.warning"
                         lang={currentLang}
                     />
@@ -470,7 +470,7 @@
     <p style="width: 100%; text-align: center;">
         <i>
             <LocalizedText
-                text="Scratch Note: Please don't mention PenguinMod on Scratch, we have different rules compared to Scratch! 😅"
+                text="Scratch Note: Only mention ElectraMod when there is  a bug., please."
                 key="home.scratchnote"
                 dontlink={true}
                 lang={currentLang}
