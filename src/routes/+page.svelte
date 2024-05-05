@@ -305,8 +305,8 @@
     <meta property="twitter:title" content="ElectraMod - Home">
     <meta name="description" content="Where stuff of ElectraMod is shown.">
     <meta property="twitter:description" content="Where stuff of ElectraMod is shown.">
-    <meta property="og:url" content="https://penguinmod.com/">
-    <meta property="twitter:url" content="https://penguinmod.com/">
+    <meta property="og:url" content="https://electramod-home.vercel.app/">
+    <meta property="twitter:url" content="https://electramod-home.vercel.app/">
 </svelte:head>
 
 <NavigationBar />
@@ -316,15 +316,15 @@
 
     <Alert
         onlyShowID={"donatee:_2"}
-        text={"ElectraMod is a free-to-use visual coding website. Your support can help us keep the website working!"}
+        text={"ElectraMod is a powerful free visual coding Game Engine (hosted on web) based on PenguinMod."}
         textBreakup={true}
         textColor={"white"}
         hasImage={true}
         imgSrc={"/happy.svg"}
         imgAlt={":D"}
         hasButton={true}
-        buttonText={"Donate"}
-        buttonHref={"/donate"}
+        buttonText={"Try it!"}
+        buttonHref={"https://electramod.vercel.app/"}
     />
     <!-- TODO: should we remove this? -->
     <!-- <Alert
@@ -790,9 +790,7 @@
                         />
                         <p>
                             <LocalizedText
-                                text="Whoops! Our server's having some problems. Try again later."
-                                key="home.server.error"
-                                lang={currentLang}
+                                text="Check Status Page if ElectraMod has a problem!"
                             />
                         </p>
                     </div>
