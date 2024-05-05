@@ -436,13 +436,6 @@
                 />
             </Button>
             <Button label="GitHub" link={LINK.github} />
-            <Button link={LINK.wiki}>
-                <LocalizedText
-                    text="Community Wiki"
-                    key="home.footer.sections.community.wiki"
-                    lang={currentLang}
-                />
-            </Button>
         </div>
     {/if}
 
