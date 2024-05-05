@@ -1152,27 +1152,19 @@
                             <p class="small" style="margin-block:4px">
                                 {#if fullProfile.admin === true}
                                     <LocalizedText
-                                        text="King Penguin"
-                                        key="profile.ranking.admin"
-                                        lang={currentLang}
+                                        text="Circuit"
                                     />
                                 {:else if fullProfile.approver === true}
                                     <LocalizedText
-                                        text="Guard Penguin"
-                                        key="profile.ranking.mod"
-                                        lang={currentLang}
+                                        text="Guard Circuit"
                                     />
                                 {:else if fullProfile.rank === 1}
                                     <LocalizedText
-                                        text="Penguin"
-                                        key="profile.ranking.ranked"
-                                        lang={currentLang}
+                                        text="Circuit"
                                     />
                                 {:else}
                                     <LocalizedText
-                                        text="Newborn Penguin"
-                                        key="profile.ranking.new"
-                                        lang={currentLang}
+                                        text="Newborn Circuit"
                                     />
                                 {/if}
                                 {#if loggedIn && user === loggedInUser && fullProfile.rank === 0}

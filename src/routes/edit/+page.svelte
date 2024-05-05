@@ -631,7 +631,7 @@
                         id="FILERI"
                         type="file"
                         class="hidden-picker"
-                        accept=".pmp,.pm,.sb3,.sb2,.sb,.goobert"
+                        accept=".electra,.dino,.snail,.pmp,.pm,.sb3,.sb2,.sb,.goobert"
                         on:change={projectFilePicked}
                     />
                     <label

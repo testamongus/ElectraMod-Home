@@ -316,7 +316,7 @@
 
     <Alert
         onlyShowID={"donatee:_2"}
-        text={"PenguinMod is a free-to-use visual coding website. Your support can help us keep the website working!"}
+        text={"ElectraMod is a free-to-use visual coding website. Your support can help us keep the website working!"}
         textBreakup={true}
         textColor={"white"}
         hasImage={true}
@@ -353,8 +353,6 @@
                 <h1>
                     <LocalizedText
                         text="Built off of PenguinMod, Turbowarp and Scratch"
-                        key="home.introduction2"
-                        lang={currentLang}
                     />
                 </h1>
                 <Button
@@ -408,9 +406,7 @@
                 />
                 <p>
                     <LocalizedText
-                        text="ElectraMod is made by French and English speakers. There WILL be mistakes in the translation."
-                        key="translation.warning"
-                        lang={currentLang}
+                        text="ElectraMod is made English speakers. There WILL be mistakes in the translation."
                     />
                 </p>
             </div>
@@ -459,9 +455,7 @@
             />
             <p>
                 <LocalizedText
-                    text="PenguinMod is made by English-speaking developers. Expect minor issues and sorry for any translation errors."
-                    key="translation.warning"
-                    lang={currentLang}
+                    text="ElectraMod is made by English-speaking developers. Expect minor issues and sorry for any translation errors."
                 />
             </p>
         </div>
@@ -1070,19 +1064,19 @@
         width: 100%;
         padding: 24px 0px 48px;
         border-top: rgba(0, 0, 0, 0.3) 1px solid;
-        background: #00c3ff15;
+        background: #3700ff15;
         font-weight: bold;
         margin-top: 4px;
         /* border-top-left-radius: 20%; */
         /* border-top-right-radius: 20%; */
     }
     .footer a {
-        color: dodgerblue;
+        color: #434070;
         font-weight: normal;
         margin: 2px 0px;
     }
     .footer a:active {
-        color: rgb(15, 77, 139);
+        color: #232231;
     }
     .footer-list {
         display: flex;
@@ -1130,7 +1124,7 @@
     }
 
     .section-info {
-        background: #00c3ffad;
+        background: #5b4386ad;
         height: 24rem;
         color: white;
         display: flex;
@@ -1144,7 +1138,7 @@
         justify-content: space-around;
     }
     .section-links {
-        background: #00c3ff28;
+        background: #5b37f728;
         color: white;
         display: flex;
         flex-direction: row;
@@ -1182,7 +1176,7 @@
     .section-toggle-button {
         border-radius: 1024px;
         padding: 4px 10px;
-        background: #008cff;
+        background: #403e5f;
         font-weight: bold;
         font-size: 1em;
         border: 0;

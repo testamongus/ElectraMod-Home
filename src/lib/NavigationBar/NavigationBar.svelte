@@ -269,22 +269,39 @@
 </div>
 <div class="bar" style={isAprilFirst ? `background-color: ${randomColor} !important` : ''}>
 	<a class="logo" href="/">
-		<img class="logo-image" src="/navicon.png" alt="ElectramOD" />
+		<img class="logo-image" src="/navicon.png" alt="ElectraMod" />
 	</a>
 	<div style="margin-right: 12px;" />
 	<div class="logo-launcher-margin" />
+	<div class="moon">
 	<BarPage
 		label="<img src='/moon.svg' alt='ThemeSwitcher'>"
 		style="padding:0.5rem"
 		classActor={"themeSwitcher"}
 		on:click={switchTheme}
 	/>
+    </div>
+	<div class="sun">
+		<BarPage
+			label="<img src='/sun.svg' alt='ThemeSwitcher'>"
+			style="padding:0.5rem"
+			classActor={"themeSwitcher"}
+			on:click={switchTheme}
+		/>
+	</div>
 	<div class="only-non-launcher">
 		<BarPage link={LINK.editor}>
 			<LocalizedText
 				text="Create"
 				key="navigation.create"
 				lang={currentLang}
+			/>
+		</BarPage>
+	</div>
+	<div class="only-non-launcher">
+		<BarPage link={"https://electramod.betteruptime.com"}>
+			<LocalizedText
+				text="Status Page"
 			/>
 		</BarPage>
 	</div>
@@ -620,5 +637,17 @@
 	}
 	:global(body.launcher-mode) .only-launcher {
 		display: initial;
+	}
+	.moon {
+    	display: block;
+	}
+	.sun {
+    	display: none;
+	}
+	:global(body.dark-mode) .moon {
+    	display: none;
+	}
+	:global(body.dark-mode) .sun {
+    	display: block;
 	}
 </style>
