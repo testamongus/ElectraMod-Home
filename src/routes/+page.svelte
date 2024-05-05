@@ -341,8 +341,9 @@
     <StatusAlert />
 
     {#if loggedIn === false}
-        <div class="section-info">
+        <div class="section-info" style="padding-bottom: 2rem;">
             <div style="margin-left: 8rem;">
+                <center><img src="/Title.svg" alt="ElectraMod" style="width: 20rem"></center>
                 <h1>
                     <LocalizedText
                         text="Build Awesome Projects with tons of capabilites!"
@@ -479,14 +480,14 @@
                     "home.sections.whatsnew",
                     currentLang
                 )}
-                seemore={`https://discord.com/channels/1033551490331197462/1038252360184643674`}
+                seemore={`https://discord.com/channels/1225491941966483496/1236379379408441464`}
             >
                 <div class="category-content">
                     {#if updates.length > 0}
                         {#each updates as update}
                             <UserDisplay
-                                link={`https://discord.com/channels/1033551490331197462/1038252360184643674`}
-                                userLink={`https://discord.com/channels/1033551490331197462/1038252360184643674`}
+                                link={`https://discord.com/channels/1225491941966483496/1236379379408441464`}
+                                userLink={`https://discord.com/channels/1225491941966483496/1236379379408441464`}
                                 text={update.cleanContent}
                                 author={update.authorName}
                                 image={update.authorImage}
@@ -937,10 +938,8 @@
         <p>
             <!-- {#if !thingyActive} -->
                 <LocalizedText
-                    text="PenguinMod is not affiliated with Scratch, TurboWarp, the Scratch Team, or the Scratch Foundation."
-                    key="home.footer.notaffiliated"
+                    text="ElectraMod is not affiliated with Scratch, TurboWarp, PenguinMod, the Scratch Team, or the Scratch Foundation."
                     dontlink={true}
-                    lang={currentLang}
                 />
             <!-- todo: find a better place to put this that isn't, the legal text -->
             <!-- {:else}
