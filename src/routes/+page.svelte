@@ -986,13 +986,6 @@
                     />
                 </p>
                 <a target="_blank" href={LINK.discord}>Discord</a>
-                <a target="_blank" href={LINK.wiki}>
-                    <LocalizedText
-                        text="Wiki"
-                        key="home.footer.sections.community.wiki"
-                        lang={currentLang}
-                    />
-                </a>
             </div>
             <div class="footer-section">
                 <p>
