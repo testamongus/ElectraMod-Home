@@ -343,7 +343,6 @@
     {#if loggedIn === false}
         <div class="section-info" style="padding-bottom: 2rem;">
             <div style="margin-left: 8rem;">
-                <center><img src="/Title.svg" alt="ElectraMod" style="width: 20rem"></center>
                 <h1>
                     <LocalizedText
                         text="Build Awesome Projects with tons of capabilites!"
@@ -454,7 +453,7 @@
             </p>
         </div>
     {/if}
-
+    <center><img src="/Title.svg" alt="ElectraMod" style="width: 20rem"></center>
     <p style="width: 100%; text-align: center;">
         <i>
             <LocalizedText
