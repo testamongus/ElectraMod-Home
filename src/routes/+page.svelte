@@ -1025,7 +1025,8 @@
                         lang={currentLang}
                     />
                 </p>
-                <a href={"/donate"}>PenguinMod</a>
+                <a href={"/donate"}>ElectraMod</a>
+                <a target="_blank" href={LINK.donate.penguinmod}>PenguinMod</a>
                 <a target="_blank" href={LINK.donate.turbowarp}>TurboWarp</a>
                 <a target="_blank" href={LINK.donate.scratch}>Scratch</a>
             </div>
