@@ -345,7 +345,7 @@
             <div style="margin-left: 8rem;">
                 <h1>
                     <LocalizedText
-                        text="Build Awesome Projects with tons of capabilites!"
+                        text="Build projects with even more capabilities."
                         key="home.introduction1"
                         lang={currentLang}
                     />
@@ -406,7 +406,7 @@
                 />
                 <p>
                     <LocalizedText
-                        text="ElectraMod is made English speakers. There WILL be mistakes in the translation."
+                        text="ElectraMod is made English and French speakers. There WILL be mistakes in the translation."
                     />
                 </p>
             </div>
@@ -448,7 +448,7 @@
             />
             <p>
                 <LocalizedText
-                    text="ElectraMod is made by English-speaking developers. Expect minor issues and sorry for any translation errors."
+                    text="ElectraMod is made English and French speakers. There WILL be mistakes in the translation."
                 />
             </p>
         </div>
