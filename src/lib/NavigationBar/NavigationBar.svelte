@@ -305,6 +305,13 @@
 			/>
 		</BarPage>
 	</div>
+	<div class="only-non-launcher">
+		<BarPage link={"/upload"}>
+			<LocalizedText
+				text="Upload"
+			/>
+		</BarPage>
+	</div>
 	<div class="only-launcher">
 		<BarPage id="__home_navigation_create_button">
 			<img src="/create.png" alt="Create" />

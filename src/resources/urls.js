@@ -102,5 +102,5 @@ export default {
     /**
      * The admin panel for em projects api
      */
-    adminPanel: "https://penguinmod.com/panel"
+    adminPanel: "https://electramod-home.vercel.app/panel"
 }
