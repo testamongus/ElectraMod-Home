@@ -207,14 +207,14 @@
 </script>
 
 <svelte:head>
-    <title>PenguinMod - Messages</title>
-    <meta name="title"                   content="PenguinMod - Messages" />
-    <meta property="og:title"            content="PenguinMod - Messages" />
-    <meta property="twitter:title"       content="PenguinMod - Messages">
+    <title>ElectraMod - Messages</title>
+    <meta name="title"                   content="ElectraMod - Messages" />
+    <meta property="og:title"            content="ElectraMod - Messages" />
+    <meta property="twitter:title"       content="ElectraMod - Messages">
     <meta name="description"             content="See your messages or alerts.">
     <meta property="twitter:description" content="See your messages or alerts.">
-    <meta property="og:url"              content="https://penguinmod.com/messages">
-    <meta property="twitter:url"         content="https://penguinmod.com/messages">
+    <meta property="og:url"              content="https://electramod-home.vercel.app/messages">
+    <meta property="twitter:url"         content="https://electramod-home.vercel.app/messages">
 </svelte:head>
 
 <NavigationBar />
@@ -428,7 +428,7 @@
                     {:else if message.type === "remix"}
                         <p>
                             <a
-                                href={`https://studio.penguinmod.com/#${message.remixId}`}
+                                href={`https://electramod.vercel.app/editor.html#${message.remixId}`}
                                 target="_blank"
                             >
                                 {String(
@@ -458,7 +458,7 @@
                         </p>
                         <p>
                             <a
-                                href={`https://studio.penguinmod.com/#${message.projectId}`}
+                                href={`https://electramod.vercel.app/editor.html#${message.projectId}`}
                                 target="_blank"
                             >
                                 <LocalizedText
